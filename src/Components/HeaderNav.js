@@ -51,11 +51,11 @@ const HeaderNav = ({ handleTheme }) => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button className="btn"
+                <button className="mr-2 text-secondary focus:outline-none"
                     onClick={handleThemeMode}>
                     {
-                        !toggleTheme ? <MoonIcon className='h-6 w-6 text-white' />
-                            : <SunIcon className='h-6 w-6 text-white' />
+                        !toggleTheme ? <MoonIcon className='h-6 w-6' />
+                            : <SunIcon className='h-6 w-6' />
                     }
                 </button>
             </div>

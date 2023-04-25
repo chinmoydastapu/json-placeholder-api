@@ -41,7 +41,7 @@ const UserProfile = () => {
     const travelledPath = userid.slice(1, userid.length);
     const breadcrumbData = {
         name: 'User Profile',
-        paths: travelledPath
+        paths: [...travelledPath, name]
     };
 
     return (
@@ -61,9 +61,10 @@ const UserProfile = () => {
                 <div className="mt-16">
                     <h1 className="font-bold text-center text-3xl text-gray-900">{company?.name}</h1>
                     <p className="text-center text-sm text-gray-400 font-medium">{address?.suite}, {address?.street}, {address?.city}</p>
+                    <span className='block w-fit mx-auto text-sm text-primary'>(Company Details)</span>
 
                     <div className="my-5 px-6">
-                        <a href={`https://${website}`} className="text-white block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-secondary">Connect via: <span className="font-bold">{website}</span></a>
+                        <a href={`https://${website}`} className="text-secondary block rounded-lg text-center font-medium leading-6 px-6 py-3 bg-base-100">Connect via: <span className="font-bold">{website}</span></a>
                     </div>
                     <ul className="flex justify-between items-center my-5 px-6">
                         {

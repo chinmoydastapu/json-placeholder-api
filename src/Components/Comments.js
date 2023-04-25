@@ -32,7 +32,7 @@ const Comments = () => {
         <Fragment>
             <Breadcrumb props={breadcrumbData}  />
             <h3 className='w-3/4 mx-auto text-secondary text-2xl font-bold text-center mt-10'>Our Comments</h3>
-            <span className='block w-1/2 mx-auto text-gray-400 text-center'>Here is our big collection of comments. You can view the original post and also the user profile by clicking on the avatar.</span>
+            <span className='block w-11/12 lg:w-1/2 mx-auto text-gray-400 text-center'>Here is our big collection of comments. You can view the original post and also the user profile by clicking on the avatar.</span>
             <div className='w-11/12 mx-auto mt-5 mb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5'>
                 {
                     visibleComments.map(comment => <Comment

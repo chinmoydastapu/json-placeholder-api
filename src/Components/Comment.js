@@ -42,9 +42,9 @@ const Comment = ({ comment }) => {
     return (
         <Fragment>
             <div className="card bg-base-100 shadow-xl image-full overflow-hidden transition-all duration-300 ease-linear hover:scale-105">
-                <figure><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNbZtXvo7xDfcn69sZcUeeg8UtHEMNVj6zUgo_mDJTsh4q4MUk1472aYGCSPP7aJMigVA&usqp=CAU" alt="..." /></figure>
+                <figure><img className='w-full' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNbZtXvo7xDfcn69sZcUeeg8UtHEMNVj6zUgo_mDJTsh4q4MUk1472aYGCSPP7aJMigVA&usqp=CAU" alt="..." /></figure>
                 <div className="card-body">
-                    <div className={`transition-all duration-700 ease-in-out ${modalOpen && 'translate-x-[400px]'}`}>
+                    <div className={`transition-all duration-1000 ease-in-out ${modalOpen && 'translate-x-[400px]'}`}>
                         <small data-tip={tooltipData} className={`tooltip tooltip-right ${tooltipData.toLowerCase() === 'copied' ? 'tooltip-success' : 'tooltip-secondary'} cursor-copy text-secondary`} onClick={copyTextToClipboard}>{email}</small>
                         <h2 className="card-title text-green-500 font-bold">{name}</h2>
                         <p className='text-gray-300 font-serif'>{commentBody}</p>
@@ -54,7 +54,7 @@ const Comment = ({ comment }) => {
                             onClick={() => handleModalBtn(comment.postId)}>View Post
                         </button>
                     </div>
-                    <div className={`absolute left-0 ${modalOpen ? 'block top-0' : 'top-[-500px]'} transition-all duration-500 ease-in-out delay-500`}>
+                    <div className={`absolute left-0 ${modalOpen ? 'block top-0' : 'top-[-500px]'} transition-all duration-700 ease-in-out delay-700`}>
                         {
                             modalOpen ? <Modal props={props}></Modal> : undefined
                         }
