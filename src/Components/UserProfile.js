@@ -4,6 +4,11 @@ import Breadcrumb from './Breadcrumb';
 const UserProfile = () => {
     const [user, setUser] = useState({});
     const { name, company, address, website, email, phone, username } = user;
+    const [animation, setAnimation] = useState(false);
+
+    useEffect(() => {
+        setAnimation(true);
+    }, []);
 
     // Finding the Catch Phrases
     const catchPhrases = company?.catchPhrase?.split(' ');
@@ -47,7 +52,7 @@ const UserProfile = () => {
     return (
         <Fragment>
             <Breadcrumb props={breadcrumbData}  />
-            <div className="bg-gray-200 relative shadow-2xl border-2 rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto my-28">
+            <div className={`bg-gray-200 relative shadow-2xl border-2 rounded-lg w-5/6 md:w-5/6  lg:w-4/6 xl:w-3/6 mx-auto my-28 transition-opacity duration-1000 ease-linear ${animation ? 'opacity-100' : 'opacity-0'}`}>
                 <div data-tip={name} className="tooltip tooltip-bottom tooltip-secondary avatar placeholder flex justify-center cursor-default">
                     <div className="w-32 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2 bg-base-200 absolute -top-20 transition duration-200 transform hover:scale-110">
                         <span className='overflow-hidden text-4xl'>
