@@ -8,6 +8,7 @@ const Tasks = () => {
     const [users, setUsers] = useState([]);
     const [visibleTasks, setVisibleTasks] = useState([]);
     const [sortedTasks, setSortedTasks] = useState([]);
+    const [hoverSortBtn, setHoverSortBtn] = useState(false);
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/todos")
@@ -60,7 +61,7 @@ const Tasks = () => {
             <Breadcrumb props={breadcrumbData} />
             <div className='w-11/12 md:w-3/4 mx-auto mt-10 flex justify-end'>
                 <div className="dropdown dropdown-hover">
-                    <label tabIndex={0} className="btn btn-outline m-1">Sort By<ChevronDoubleDownIcon className='ml-2 w-5 h-5' /></label>
+                    <label tabIndex={0} className="btn btn-outline m-1" onMouseEnter={() => setHoverSortBtn(true)} onMouseLeave={() => setHoverSortBtn(false)}>Sort By<ChevronDoubleDownIcon className={`ml-2 w-5 h-5 ${hoverSortBtn ? 'animate-bounce' : 'animate-pulse'}`} /></label>
                     <ul onClick={handleSortByDropdown} tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link>All</Link></li>
                         <li><Link>Completed</Link></li>
@@ -85,7 +86,7 @@ const Tasks = () => {
                                     <tr key={task.id}>
                                         <td>
                                             <div className="flex items-center space-x-3">
-                                                <div data-tip={users[task?.userId - 1]?.username} className="tooltip tooltip-right tooltip-secondary avatar placeholder">
+                                                <div data-tip={users[task?.userId - 1]?.username} className="tooltip tooltip-right tooltip-secondary avatar placeholder hover:animate-pulse">
                                                     <Link to={`/users/${task?.userId}`} className="w-12 h-12 rounded-full ring ring-secondary ring-offset-base-100 ring-offset-2 flex justify-center items-center">
                                                         {
                                                             users[task?.userId - 1]?.name ? users[task?.userId - 1]?.name.split(' ')[0]?.split('')[0] + users[task?.userId - 1]?.name.split(' ')[1]?.split('')[0] : <img className='w-full h-full rounded-full' src='https://is3-ssl.mzstatic.com/image/thumb/Purple115/v4/20/e3/ac/20e3ac89-9946-686d-0775-8b31d25e5ba2/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg' alt='...' />
