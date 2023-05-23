@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
     MoonIcon,
@@ -6,15 +6,22 @@ import {
     Bars2Icon,
     XMarkIcon
 } from '@heroicons/react/24/solid';
+import { AuthContext } from "../contexts/UserContexts";
 
 const HeaderNav = ({ handleTheme }) => {
     const [toggleMenu, setToggleMenu] = useState(false);
     const [activeNavItem, setActiveNavItem] = useState('/');
     const [toggleTheme, setToggleTheme] = useState(false);
 
+    const { user, logOut } = useContext(AuthContext);
+
     const handleThemeMode = () => {
         handleTheme();
         setToggleTheme(!toggleTheme);
+    };
+
+    const handleLogOut = () => {
+        logOut().then(() => console.log("Successfully Logged Out")).catch(error => console.log(error.message));
     };
 
     const navItems = [
@@ -41,7 +48,14 @@ const HeaderNav = ({ handleTheme }) => {
                         }
                     </ul>
                 </div>
-                <Link to='/' className="btn btn-ghost normal-case text-xl hover:bg-base-100 focus:bg-none active:bg-none font-bold">Rout<span className='text-secondary'>Ex</span></Link>
+                <div className='flex flex-col items-start'>
+                    <Link to='/' className="btn btn-ghost normal-case text-xl hover:bg-base-100 focus:bg-none active:bg-none font-bold">Rout<span className='text-secondary'>Ex</span></Link>
+                    <span className='text-xs ml-4'>
+                        {
+                            user?.email && <span>Welcome, {user.email}</span>
+                        }
+                    </span>
+                </div>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -51,6 +65,12 @@ const HeaderNav = ({ handleTheme }) => {
                 </ul>
             </div>
             <div className="navbar-end">
+                <span className='mr-3'>
+                    {
+                        user?.email ? <button className="btn btn-sm" onClick={handleLogOut}>Logout</button> :
+                            <Link to='/login'><button className="btn btn-sm">Login</button></Link>
+                    }
+                </span>
                 <button className="mr-2 text-secondary focus:outline-none"
                     onClick={handleThemeMode}>
                     {
